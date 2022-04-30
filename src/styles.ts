@@ -75,7 +75,7 @@ export const Indicator = styled.button<{ active: boolean; color?: string }>`
   border-radius: 100%;
   height: 10px;
   width: 10px;
-  border: none;
+  border: 0;
   margin-left: 10px;
   background-color: ${({ active, color }) =>
     active ? color || '#fff' : 'rgba(0, 0, 0, 0.3)'};

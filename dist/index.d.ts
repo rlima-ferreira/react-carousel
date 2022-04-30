@@ -7,6 +7,8 @@ interface CarouselProps {
     getIndicator?: Function;
     arrowLeftIcon?: ReactFragment;
     arrowRightIcon?: ReactFragment;
+    autoplay?: boolean;
+    delay?: number;
     iconColor?: string;
     bg?: string;
 }

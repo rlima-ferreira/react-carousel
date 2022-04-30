@@ -1,4 +1,5 @@
 import React, { ReactFragment, useEffect, useRef, useState } from 'react';
+import useInterval from './hooks/useInterval';
 import { Wrapper, Indicator } from './styles';
 
 interface CarouselProps {
@@ -9,8 +10,8 @@ interface CarouselProps {
   getIndicator?: Function;
   arrowLeftIcon?: ReactFragment;
   arrowRightIcon?: ReactFragment;
-  // autoplay?: boolean;
-  // delay?: number;
+  autoplay?: boolean;
+  delay?: number;
   iconColor?: string;
   bg?: string;
 }
@@ -23,37 +24,49 @@ const Carousel: React.FC<CarouselProps> = ({
   getIndicator,
   arrowLeftIcon,
   arrowRightIcon,
-  // autoplay,
-  // delay,
+  autoplay,
+  delay,
   iconColor,
   bg,
 }) => {
-  const [position, setPosition] = useState({
-    current: 0,
-    last: 0,
-  });
-  // const [timer] = useState(
-  //   autoplay ? setInterval(toggleItem, delay || 3000) : 0
-  // );
+  const [settings, setSettings] = useState({ current: 0, last: 0, autoplay });
   const items = useRef<HTMLDivElement>(null);
+  const interval = 3000;
 
   useEffect(() => {
     const size = source.length - 1;
-    const { current, last } = position;
+    const { current, last } = settings;
     if (current <= size) {
       items.current?.scrollBy(items.current.offsetWidth * (current - last), 0);
     } else {
       items.current?.scrollBy(items.current.offsetWidth * -current, 0);
     }
-    // return () => clearInterval(timer);
-  }, [position]);
+    const id = setTimeout(
+      () => setSettings({ ...settings, autoplay }),
+      delay || interval
+    );
+    return () => clearTimeout(id);
+  }, [settings.current]);
+
+  useInterval(
+    () => {
+      if (!autoplay) return;
+      if (!settings.autoplay) return;
+      const size = source.length - 1;
+      let { current } = settings;
+      current = current + 1 <= size ? current + 1 : 0;
+      setSettings({ ...settings, last: settings.current, current });
+    },
+    delay || interval,
+    !settings.autoplay
+  );
 
   function toggleItem(iterator: number = 1) {
     const size = source.length - 1;
-    let current = position.current + iterator;
+    let current = settings.current + iterator;
     if (iterator > 0) current = current <= size ? current : 0;
     else if (iterator < 0) current = current >= 0 ? current : size;
-    setPosition({ last: position.current, current });
+    setSettings({ last: settings.current, current, autoplay: false });
   }
 
   return (
@@ -80,17 +93,25 @@ const Carousel: React.FC<CarouselProps> = ({
           getIndicator ? (
             getIndicator({
               index,
-              active: index === position.current,
+              active: index === settings.current,
               navigate: () =>
-                setPosition({ last: position.current, current: index }),
+                setSettings({
+                  ...settings,
+                  last: settings.current,
+                  current: index,
+                }),
             })
           ) : (
             <Indicator
               key={index.toString()}
-              active={position.current == index}
+              active={settings.current == index}
               color={iconColor}
               onClick={() =>
-                setPosition({ last: position.current, current: index })
+                setSettings({
+                  ...settings,
+                  last: settings.current,
+                  current: index,
+                })
               }
             />
           )
