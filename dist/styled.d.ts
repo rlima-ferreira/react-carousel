@@ -1,8 +1,8 @@
 export declare const Wrapper: import("styled-components").StyledComponent<"div", any, {
-    height: number;
-    width: number;
-    background: string;
-    color: string;
+    height?: number | undefined;
+    width?: number | undefined;
+    background?: string | undefined;
+    color?: string | undefined;
 }, never>;
 export declare const Indicator: import("styled-components").StyledComponent<"button", any, {
     active: boolean;

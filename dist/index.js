@@ -23,65 +23,92 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
 function __makeTemplateObject(cooked, raw) {
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 }
 
-var Wrapper = styled__default["default"].div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  position: relative;\n  width: ", ";\n  background-color: ", ";\n  overflow: hidden;\n\n  > div.items {\n    display: flex;\n    overflow-x: auto;\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n    scroll-snap-type: x mandatory;\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch;\n\n    &:-webkit-scrollbar {\n      display: none;\n    }\n\n    > div {\n      flex: none;\n      width: 100%;\n      height: ", ";\n      scroll-snap-align: start;\n      pointer-events: none;\n    }\n  }\n\n  > div.arrows {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n\n    > button {\n      color: ", ";\n      cursor: pointer;\n    }\n  }\n\n  > div.indicators {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n\n    button {\n      background-color: ", ";\n      cursor: pointer;\n    }\n  }\n"], ["\n  position: relative;\n  width: ", ";\n  background-color: ", ";\n  overflow: hidden;\n\n  > div.items {\n    display: flex;\n    overflow-x: auto;\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n    scroll-snap-type: x mandatory;\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch;\n\n    &:-webkit-scrollbar {\n      display: none;\n    }\n\n    > div {\n      flex: none;\n      width: 100%;\n      height: ", ";\n      scroll-snap-align: start;\n      pointer-events: none;\n    }\n  }\n\n  > div.arrows {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n\n    > button {\n      color: ", ";\n      cursor: pointer;\n    }\n  }\n\n  > div.indicators {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n\n    button {\n      background-color: ", ";\n      cursor: pointer;\n    }\n  }\n"])), function (_a) {
+var Wrapper = styled__default["default"].div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  width: ", ";\n  background-color: ", ";\n  overflow: hidden;\n  position: relative;\n\n  > div.items {\n    display: flex;\n    overflow-x: auto;\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n    scroll-snap-type: x mandatory;\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch;\n\n    &::-webkit-scrollbar {\n      display: none;\n    }\n\n    > div {\n      flex: none;\n      width: 100%;\n      height: ", ";\n      scroll-snap-align: start;\n    }\n  }\n\n  > div.arrows {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    width: 100%;\n\n    > div {\n      position: absolute;\n      top: calc(50% - 85px);\n      left: 5%;\n\n      &:last-of-type {\n        left: inherit;\n        right: 5%;\n      }\n\n      > button {\n        color: ", ";\n        cursor: pointer;\n        height: 70px;\n        width: 70px;\n        background-color: transparent;\n        border: none;\n        outline: none;\n      }\n    }\n  }\n\n  > div.indicators {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: absolute;\n    bottom: 0;\n    height: 50px;\n    width: 100%;\n  }\n"], ["\n  width: ", ";\n  background-color: ", ";\n  overflow: hidden;\n  position: relative;\n\n  > div.items {\n    display: flex;\n    overflow-x: auto;\n    -ms-overflow-style: none; /* IE and Edge */\n    scrollbar-width: none; /* Firefox */\n    scroll-snap-type: x mandatory;\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch;\n\n    &::-webkit-scrollbar {\n      display: none;\n    }\n\n    > div {\n      flex: none;\n      width: 100%;\n      height: ", ";\n      scroll-snap-align: start;\n    }\n  }\n\n  > div.arrows {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    width: 100%;\n\n    > div {\n      position: absolute;\n      top: calc(50% - 85px);\n      left: 5%;\n\n      &:last-of-type {\n        left: inherit;\n        right: 5%;\n      }\n\n      > button {\n        color: ", ";\n        cursor: pointer;\n        height: 70px;\n        width: 70px;\n        background-color: transparent;\n        border: none;\n        outline: none;\n      }\n    }\n  }\n\n  > div.indicators {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: absolute;\n    bottom: 0;\n    height: 50px;\n    width: 100%;\n  }\n"])), function (_a) {
     var width = _a.width;
-    return "".concat(width, "px") || '100vw';
+    return width || '100vw';
 }, function (_a) {
     var background = _a.background;
     return background || '#444';
 }, function (_a) {
     var height = _a.height;
-    return "".concat(height, "px") || '500px';
-}, function (_a) {
-    var color = _a.color;
-    return color || '#fff';
+    return height || '500px';
 }, function (_a) {
     var color = _a.color;
     return color || '#fff';
 });
-var Indicator = styled__default["default"].button(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  border-radius: 100%;\n  height: 20px;\n  width: 20px;\n  border: none;\n  margin-left: 10px;\n  background-color: ", ";\n\n  &:first-of-type {\n    margin-left: 0;\n  }\n"], ["\n  border-radius: 100%;\n  height: 20px;\n  width: 20px;\n  border: none;\n  margin-left: 10px;\n  background-color: ", ";\n\n  &:first-of-type {\n    margin-left: 0;\n  }\n"])), function (_a) {
-    var active = _a.active;
-    return !active && 'rgba(0, 0, 0, 0.3)';
+var Indicator = styled__default["default"].button(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  border-radius: 100%;\n  height: 10px;\n  width: 10px;\n  border: none;\n  margin-left: 10px;\n  background-color: ", ";\n  outline: none;\n  cursor: pointer;\n\n  &:first-of-type {\n    margin-left: 0;\n  }\n"], ["\n  border-radius: 100%;\n  height: 10px;\n  width: 10px;\n  border: none;\n  margin-left: 10px;\n  background-color: ", ";\n  outline: none;\n  cursor: pointer;\n\n  &:first-of-type {\n    margin-left: 0;\n  }\n"])), function (_a) {
+    var active = _a.active, color = _a.color;
+    return active ? color || '#fff' : 'rgba(0, 0, 0, 0.3)';
 });
 var templateObject_1, templateObject_2;
 
 var Carousel = function (_a) {
-    var h = _a.h, w = _a.w, source = _a.source, getSlide = _a.getSlide, getIndicator = _a.getIndicator, arrowLeftIcon = _a.arrowLeftIcon, arrowRightIcon = _a.arrowRightIcon, autoplay = _a.autoplay, delay = _a.delay, iconColor = _a.iconColor, bg = _a.bg;
-    var _b = React.useState(0), selected = _b[0], setSelected = _b[1];
+    var h = _a.h, w = _a.w, source = _a.source, getItem = _a.getItem, getIndicator = _a.getIndicator, arrowLeftIcon = _a.arrowLeftIcon, arrowRightIcon = _a.arrowRightIcon, 
+    // autoplay,
+    // delay,
+    iconColor = _a.iconColor, bg = _a.bg;
+    var _b = React.useState({
+        current: 0,
+        last: 0,
+    }), position = _b[0], setPosition = _b[1];
+    // const [timer] = useState(
+    //   autoplay ? setInterval(toggleItem, delay || 3000) : 0
+    // );
+    var items = React.useRef(null);
     React.useEffect(function () {
-        if (!autoplay)
-            return;
-        var timer = setTimeout(function () { return toggleSlide(1); }, delay);
-        return function () { return clearTimeout(timer); };
-    }, [autoplay]);
-    function toggleSlide(iterator) {
-        var pos = 0;
-        if (iterator > 0) {
-            pos = selected + iterator < source.length ? selected + iterator : 0;
+        var _a, _b;
+        var size = source.length - 1;
+        var current = position.current, last = position.last;
+        if (current <= size) {
+            (_a = items.current) === null || _a === void 0 ? void 0 : _a.scrollBy(items.current.offsetWidth * (current - last), 0);
         }
-        else if (iterator < 0) {
-            pos = selected + iterator >= 0 ? selected + iterator : source.length - 1;
+        else {
+            (_b = items.current) === null || _b === void 0 ? void 0 : _b.scrollBy(items.current.offsetWidth * -current, 0);
         }
-        setSelected(pos);
+        // return () => clearInterval(timer);
+    }, [position]);
+    function toggleItem(iterator) {
+        if (iterator === void 0) { iterator = 1; }
+        var size = source.length - 1;
+        var current = position.current + iterator;
+        if (iterator > 0)
+            current = current <= size ? current : 0;
+        else if (iterator < 0)
+            current = current >= 0 ? current : size;
+        setPosition({ last: position.current, current: current });
     }
     return (React__default["default"].createElement(Wrapper, { width: w, height: h, background: bg, color: iconColor },
-        React__default["default"].createElement("div", { className: "items", onWheel: function (e) { return toggleSlide(e.deltaY > 0 ? -1 : 1); } }, source.map(function (item, index) { return (React__default["default"].createElement("div", { key: index.toString() }, getSlide(item))); })),
+        React__default["default"].createElement("div", { ref: items, className: "items" }, source.map(function (item, index) { return (React__default["default"].createElement("div", { key: index.toString() }, getItem(item))); })),
         React__default["default"].createElement("div", { className: "arrows" },
             React__default["default"].createElement("div", null,
-                React__default["default"].createElement("button", { onClick: function () { return toggleSlide(-1); } }, arrowLeftIcon || 'Previous')),
+                React__default["default"].createElement("button", { onClick: function () { return toggleItem(-1); } }, arrowLeftIcon || 'Back')),
             React__default["default"].createElement("div", null,
-                React__default["default"].createElement("button", { onClick: function () { return toggleSlide(1); } }, arrowRightIcon || 'Next'))),
-        React__default["default"].createElement("div", { className: "indicators" }, new Array(source.length).map(function (_, index) {
+                React__default["default"].createElement("button", { onClick: function () { return toggleItem(1); } }, arrowRightIcon || 'Next'))),
+        React__default["default"].createElement("div", { className: "indicators" }, __spreadArray([], new Array(source.length), true).map(function (_, index) {
             return getIndicator ? (getIndicator({
                 index: index,
-                active: index === selected,
-                navigate: function () { return setSelected(index); },
-            })) : (React__default["default"].createElement(Indicator, { key: index.toString(), active: selected == index, onClick: function () { return setSelected(index); } }));
+                active: index === position.current,
+                navigate: function () {
+                    return setPosition({ last: position.current, current: index });
+                },
+            })) : (React__default["default"].createElement(Indicator, { key: index.toString(), active: position.current == index, color: iconColor, onClick: function () {
+                    return setPosition({ last: position.current, current: index });
+                } }));
         }))));
 };
 

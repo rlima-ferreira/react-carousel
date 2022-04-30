@@ -1,16 +1,14 @@
 import React, { ReactFragment } from 'react';
 interface CarouselProps {
-    h: number;
-    w: number;
+    h?: number;
+    w?: number;
     source: Array<any>;
-    getSlide: Function;
+    getItem: Function;
     getIndicator?: Function;
     arrowLeftIcon?: ReactFragment;
     arrowRightIcon?: ReactFragment;
-    autoplay: boolean;
-    delay: number;
-    iconColor: string;
-    bg: string;
+    iconColor?: string;
+    bg?: string;
 }
 declare const Carousel: React.FC<CarouselProps>;
 export default Carousel;

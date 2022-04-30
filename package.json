@@ -28,6 +28,9 @@
   "peerDependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "styled-component": "^4.4.0"
+    "styled-components": "^5.3.5"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.5"
   }
 }
