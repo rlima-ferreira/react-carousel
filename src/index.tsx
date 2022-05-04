@@ -2,7 +2,7 @@ import React, { ReactFragment, useEffect, useRef, useState } from 'react';
 import useInterval from './hooks/useInterval';
 import { Wrapper, Indicator } from './styles';
 
-interface CarouselProps {
+type Props = {
   h?: number;
   w?: number;
   source: Array<any>;
@@ -14,9 +14,9 @@ interface CarouselProps {
   delay?: number;
   iconColor?: string;
   bg?: string;
-}
+};
 
-const Carousel: React.FC<CarouselProps> = ({
+export default function Carousel({
   h,
   w,
   source,
@@ -28,7 +28,7 @@ const Carousel: React.FC<CarouselProps> = ({
   delay,
   iconColor,
   bg,
-}) => {
+}: Props) {
   const [settings, setSettings] = useState({ current: 0, last: 0, autoplay });
   const items = useRef<HTMLDivElement>(null);
   const interval = 3000;
@@ -119,6 +119,4 @@ const Carousel: React.FC<CarouselProps> = ({
       </div>
     </Wrapper>
   );
-};
-
-export default Carousel;
+}
